@@ -1,0 +1,38 @@
+cask "apple-reminders-mcp" do
+  version "0.2.0"
+  sha256 "e049422025133f3e4eda2ff1fb8a89632f71a08de09f16a2acf1c80f477e8520"
+
+  url "https://github.com/xiaofeng-han/apple-reminders-mcp/releases/download/v#{version}/AppleRemindersMCP-#{version}.pkg"
+  name "Apple Reminders MCP"
+  desc "MCP server that gives AI agents native read and write access to Reminders"
+  homepage "https://github.com/xiaofeng-han/apple-reminders-mcp"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  depends_on arch: :arm64
+  depends_on macos: :tahoe
+
+  pkg "AppleRemindersMCP-#{version}.pkg"
+  # A script that execs the app's executable, not a symlink to it: started through a symlink, the
+  # app cannot find its bundle and so cannot hold the Reminders permission itself.
+  command_wrapper "apple-reminders-mcp",
+                  executable: "/Applications/AppleRemindersMCP.app/Contents/MacOS/AppleRemindersMCP"
+
+  uninstall pkgutil: "com.xiaofeng.apple-reminders-mcp.pkg"
+
+  zap trash: [
+    "~/Library/Application Support/AppleRemindersMCP",
+    "~/Library/Preferences/com.xiaofeng.apple-reminders-mcp.plist",
+  ]
+
+  caveats <<~EOS
+    To allow access to Reminders, run:
+      apple-reminders-mcp setup
+
+    Then register this command with your agents:
+      #{HOMEBREW_PREFIX}/bin/apple-reminders-mcp --stdio
+  EOS
+end
