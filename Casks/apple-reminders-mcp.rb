@@ -1,6 +1,6 @@
 cask "apple-reminders-mcp" do
-  version "0.2.0"
-  sha256 "e049422025133f3e4eda2ff1fb8a89632f71a08de09f16a2acf1c80f477e8520"
+  version "0.2.1"
+  sha256 "8ddba33486e7d9afc42404f0337f59aa6adf3f84af11cf7a4f046b95d72f5fab"
 
   url "https://github.com/xiaofeng-han/apple-reminders-mcp/releases/download/v#{version}/AppleRemindersMCP-#{version}.pkg"
   name "Apple Reminders MCP"
