@@ -5,11 +5,13 @@ Homebrew casks for Xiaofeng Han's macOS tools.
 | Cask | What it is |
 |---|---|
 | `apple-reminders-mcp` | [Apple Reminders MCP](https://github.com/xiaofeng-han/apple-reminders-mcp): an MCP server that lets AI agents fully read and write Reminders |
+| `apple-notes-mcp` | [Apple Notes MCP](https://github.com/xiaofeng-han/apple-notes-mcp): an MCP server that lets AI agents read and edit Notes with native formatting |
 
 ## Install
 
 ```bash
 brew install --cask xiaofeng-han/tap/apple-reminders-mcp
+brew install --cask xiaofeng-han/tap/apple-notes-mcp
 ```
 
 Naming the cask in full adds this tap and trusts only that cask. Since Homebrew 6, items from taps outside Homebrew have to be trusted before Homebrew loads them (see [Tap Trust](https://docs.brew.sh/Tap-Trust)). After that, `brew upgrade` picks up new versions.
