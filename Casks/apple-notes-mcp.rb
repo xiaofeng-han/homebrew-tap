@@ -1,6 +1,6 @@
 cask "apple-notes-mcp" do
-  version "0.2.0"
-  sha256 "fd7e1191148705e90be266422f52f85cc69168ed39e88992275db37e8a676a10"
+  version "0.3.0"
+  sha256 "2b314028d89fcf56a3ff358e967f9519ca1c50da3ef50064255691781e0d752b"
 
   url "https://github.com/xiaofeng-han/apple-notes-mcp/releases/download/v#{version}/AppleNotesMCP-#{version}.pkg"
   name "Apple Notes MCP"
