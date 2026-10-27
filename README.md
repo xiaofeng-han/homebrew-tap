@@ -18,7 +18,7 @@ brew install --cask xiaofeng-han/tap/apple-notes-mcp
 
 Naming the cask in full adds this tap and trusts only that cask. Since Homebrew 6, items from taps outside Homebrew have to be trusted before Homebrew loads them (see [Tap Trust](https://docs.brew.sh/Tap-Trust)). After that, `brew upgrade` picks up new versions.
 
-Each cask installs its app's release package with the macOS installer, so Homebrew asks for an administrator password. The app goes into `/Applications`, and the command (`apple-reminders-mcp` or `apple-notes-mcp`) starts it. Each app's documentation explains the rest of the setup: [Apple Reminders MCP](https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/reminders.md#install), [Apple Notes MCP](https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/notes.md#install).
+Each cask installs its app from the zip on the app's release, so Homebrew needs no administrator password. The app goes into `/Applications`; it has no Developer ID signature, so the cask takes off the quarantine Homebrew puts on downloads, which would stop Gatekeeper from starting it. The command (`apple-reminders-mcp` or `apple-notes-mcp`) starts it. Each app's documentation explains the rest of the setup: [Apple Reminders MCP](https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/reminders.md#install), [Apple Notes MCP](https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/notes.md#install).
 
 ## Maintenance
 
@@ -33,4 +33,4 @@ brew audit --cask --strict --online xiaofeng-han/tap/apple-reminders-mcp
 
 ---
 
-**中文**：`brew install --cask xiaofeng-han/tap/apple-reminders-mcp` 安装 [Apple Reminders MCP](https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/reminders.zh-CN.md)，`brew install --cask xiaofeng-han/tap/apple-notes-mcp` 安装 [Apple Notes MCP](https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/notes.zh-CN.md)，两个 App 都在 [apple-mcp](https://github.com/xiaofeng-han/apple-mcp) 仓库里开发和发布。写全名会自动添加本 tap 并只信任这一个 cask（Homebrew 6 起，第三方 tap 的内容要先信任才会加载）。安装时 Homebrew 用 macOS 的安装器装发布包，所以会要管理员密码；App 装到 `/Applications`，命令（`apple-reminders-mcp` 或 `apple-notes-mcp`）用来启动它。
+**中文**：`brew install --cask xiaofeng-han/tap/apple-reminders-mcp` 安装 [Apple Reminders MCP](https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/reminders.zh-CN.md)，`brew install --cask xiaofeng-han/tap/apple-notes-mcp` 安装 [Apple Notes MCP](https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/notes.zh-CN.md)，两个 App 都在 [apple-mcp](https://github.com/xiaofeng-han/apple-mcp) 仓库里开发和发布。写全名会自动添加本 tap 并只信任这一个 cask（Homebrew 6 起，第三方 tap 的内容要先信任才会加载）。安装时 Homebrew 用 release 上的 zip 装 App，不要管理员密码；App 装到 `/Applications`，没有 Developer ID 签名，所以 cask 会去掉 Homebrew 给下载加的隔离标记，否则 Gatekeeper 不让它启动；命令（`apple-reminders-mcp` 或 `apple-notes-mcp`）用来启动它。
