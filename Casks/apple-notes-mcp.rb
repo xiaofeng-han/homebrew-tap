@@ -1,15 +1,16 @@
 cask "apple-notes-mcp" do
-  version "0.3.0"
-  sha256 "2b314028d89fcf56a3ff358e967f9519ca1c50da3ef50064255691781e0d752b"
+  version "0.4.0"
+  sha256 "b3989ffb027dfd0763da39d575347fccb3cebdd4f2b4c38af38b991cd009e29c"
 
-  url "https://github.com/xiaofeng-han/apple-notes-mcp/releases/download/v#{version}/AppleNotesMCP-#{version}.pkg"
+  url "https://github.com/xiaofeng-han/apple-mcp/releases/download/notes-v#{version}/AppleNotesMCP-#{version}.pkg"
   name "Apple Notes MCP"
   desc "MCP server that gives AI agents native read and write access to Notes"
-  homepage "https://github.com/xiaofeng-han/apple-notes-mcp"
+  homepage "https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/notes.md"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://github.com/xiaofeng-han/apple-mcp"
+    regex(/^notes-v(\d+(?:\.\d+)+)$/i)
+    strategy :github_releases
   end
 
   depends_on arch: :arm64
