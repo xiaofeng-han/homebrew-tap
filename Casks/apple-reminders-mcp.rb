@@ -1,15 +1,16 @@
 cask "apple-reminders-mcp" do
-  version "0.3.0"
-  sha256 "74692f797f01980797128278d20e92eeae8ada238658302c5fab7b7f287442a8"
+  version "0.4.0"
+  sha256 "ce99f5ae7bb3a80e9412ef219db1e8711b6d8947e1f510a89ac823ee88b2d000"
 
-  url "https://github.com/xiaofeng-han/apple-reminders-mcp/releases/download/v#{version}/AppleRemindersMCP-#{version}.pkg"
+  url "https://github.com/xiaofeng-han/apple-mcp/releases/download/reminders-v#{version}/AppleRemindersMCP-#{version}.pkg"
   name "Apple Reminders MCP"
   desc "MCP server that gives AI agents native read and write access to Reminders"
-  homepage "https://github.com/xiaofeng-han/apple-reminders-mcp"
+  homepage "https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/reminders.md"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://github.com/xiaofeng-han/apple-mcp"
+    regex(/^reminders-v(\d+(?:\.\d+)+)$/i)
+    strategy :github_releases
   end
 
   depends_on arch: :arm64
