@@ -1,8 +1,8 @@
 cask "apple-reminders-mcp" do
   version "0.4.0"
-  sha256 "ce99f5ae7bb3a80e9412ef219db1e8711b6d8947e1f510a89ac823ee88b2d000"
+  sha256 "572eb045308eeab959b80652980d6cdd2b087d08fdabc6dd121a344d0c316319"
 
-  url "https://github.com/xiaofeng-han/apple-mcp/releases/download/reminders-v#{version}/AppleRemindersMCP-#{version}.pkg"
+  url "https://github.com/xiaofeng-han/apple-mcp/releases/download/reminders-v#{version}/AppleRemindersMCP-#{version}.zip"
   name "Apple Reminders MCP"
   desc "MCP server that gives AI agents native read and write access to Reminders"
   homepage "https://github.com/xiaofeng-han/apple-mcp/blob/main/docs/reminders.md"
@@ -16,13 +16,18 @@ cask "apple-reminders-mcp" do
   depends_on arch: :arm64
   depends_on macos: :tahoe
 
-  pkg "AppleRemindersMCP-#{version}.pkg"
+  app "AppleRemindersMCP.app"
   # A script that execs the app's executable, not a symlink to it: started through a symlink, the
   # app cannot find its bundle and so cannot hold the Reminders permission itself.
   command_wrapper "apple-reminders-mcp",
-                  executable: "/Applications/AppleRemindersMCP.app/Contents/MacOS/AppleRemindersMCP"
+                  executable: "#{appdir}/AppleRemindersMCP.app/Contents/MacOS/AppleRemindersMCP"
 
-  uninstall pkgutil: "com.xiaofeng.apple-reminders-mcp.pkg"
+  # The app is signed with a self-signed certificate, not a Developer ID, so Gatekeeper refuses to
+  # start it while it carries the quarantine Homebrew puts on downloads. The release package it was
+  # installed from before never had that attribute; removing it keeps the app starting as it did.
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/AppleRemindersMCP.app"]
+  end
 
   zap trash: [
     "~/Library/Application Support/AppleRemindersMCP",
